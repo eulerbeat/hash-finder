@@ -1,4 +1,5 @@
 extern crate crypto;
+extern crate num_cpus;
 
 use self::crypto::digest::Digest;
 use self::crypto::sha3::Sha3;
@@ -70,4 +71,7 @@ fn main() {
     }
 }
 
-// asdf: 4c8f1858
+/*
+ * check
+ * keccak256 hash of "asdf" = 4c8f1858
+*/
