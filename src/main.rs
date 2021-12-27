@@ -26,9 +26,9 @@ fn main() {
 
     println!("Signature: {}", signature);
 
-    let limit = u32::pow(2, 32);
+    let limit = u32::MAX;
 
-    let worker_count = 8;
+    let worker_count = num_cpus::get();
     let step = limit as usize / worker_count;
 
     let mut steps = Vec::new();
