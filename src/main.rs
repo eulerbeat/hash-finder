@@ -8,7 +8,7 @@ use std::thread;
 fn main() {
     let mut hasher = Sha3::keccak256();
 
-    let mut line = String::new();
+    let line;
     // println!("Enter the target function:");
     // let _b1 = std::io::stdin().read_line(&mut line).unwrap();
 
@@ -25,22 +25,17 @@ fn main() {
 
     println!("Signature: {}", signature);
 
-    let limit = u32::pow(2, 24);
+    let limit = u32::pow(2, 32);
 
     let worker_count = 8;
     let step = limit as usize / worker_count;
 
-    let steps = [
-        0,
-        step,
-        step * 2,
-        step * 3,
-        step * 4,
-        step * 5,
-        step * 6,
-        step * 7,
-        limit as usize,
-    ];
+    let mut steps = Vec::new();
+
+    for i in 0..worker_count {
+        steps.push(i * step);
+    }
+    steps.push(limit as usize);
 
     let mut handles = Vec::new();
 
